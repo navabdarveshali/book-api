@@ -14,7 +14,7 @@ router.post('/return', authMiddleware, returnBook);
 // Get all books borrowed by a user
 router.get('/user/:userId', authMiddleware, getUserBorrowedBooks);
 
-//
+// get all due books
 router.get('/getdues',getOverdueBooks);
 
 

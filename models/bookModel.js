@@ -1,6 +1,6 @@
-const connection = require('../config/db'); // Import the database connection
+const connection = require('../config/db');
 
-// Create the Books table if it doesn't exist
+// books table
 const createBooksTable = () => {
     const sql = `
         CREATE TABLE IF NOT EXISTS books (
@@ -23,11 +23,11 @@ const createBooksTable = () => {
     });
 };
 
-// Call the function to create the Books table
+
 createBooksTable();
 
 module.exports = {
-    // Function to add a new book
+    // adding book
     addBook: (title, author, genre) => {
         const sql = 'INSERT INTO books (title, author, genre) VALUES (?, ?, ?)';
         return new Promise((resolve, reject) => {
@@ -40,10 +40,9 @@ module.exports = {
         });
     },
 
-    // Function to get all books by genre
+    // fecthing by genre field
     getBooksByGenre: (genre , author,availability) => {
         const sql = 'SELECT * FROM books WHERE genre = ?';
-        // const sql ='SELECT * FROM Books WHERE genre = ? OR author = ? OR availability = ? ';
 
         return new Promise((resolve, reject) => {
             connection.query(sql, [genre,author,availability], (err, results) => {
@@ -57,7 +56,7 @@ module.exports = {
 
     
 
-    // Function to update book details
+    // update book
     updateBook: (id, title, author, genre, availability_status) => {
         const sql = 'UPDATE books SET title = ?, author = ?, genre = ?, availability_status = ? WHERE id = ?';
         return new Promise((resolve, reject) => {
@@ -70,7 +69,7 @@ module.exports = {
         });
     },
 
-    // Function to remove a book
+    // delete book
     deleteBook: (id) => {
         const sql = 'DELETE FROM books WHERE id = ?';
         return new Promise((resolve, reject) => {

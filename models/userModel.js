@@ -1,6 +1,6 @@
-const connection = require('../config/db.js'); // Import the database connection
+const connection = require('../config/db.js');
 
-// Create the Users table if it doesn't exist
+// user table
 const createUsersTable = () => {
     const sql = `
         CREATE TABLE IF NOT EXISTS users (
@@ -23,11 +23,12 @@ const createUsersTable = () => {
     });
 };
 
-// Call the function to create the Users table
+// table creation
 createUsersTable();
 
 module.exports = {
-    // Function to add a new user
+
+    // addUser
     addUser: (name, email, password, contact) => {
         const sql = 'INSERT INTO users (name, email, password, contact) VALUES (?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
@@ -40,7 +41,7 @@ module.exports = {
         });
     },
 
-    // Function to get a user by email
+    // get user by email
     getUserByEmail: (email) => {
         const sql = 'SELECT * FROM users WHERE email = ?';
         return new Promise((resolve, reject) => {
@@ -53,7 +54,7 @@ module.exports = {
         });
     },
 
-    // Function to update user information
+    // update user
     updateUser: (id, name, email, contact) => {
         const sql = 'UPDATE users SET name = ?, email = ?, contact = ? WHERE id = ?';
         return new Promise((resolve, reject) => {

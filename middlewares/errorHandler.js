@@ -1,12 +1,9 @@
-// errorHandler.js
-
 const errorHandler = (err, req, res, next) => {
-    console.error(err.stack); // Log the error stack trace for debugging
-
-    res.status(err.status || 500); // Set the response status code
+    console.error(err.stack);
+    res.status(err.status || 500);
     res.json({
         success: false,
-        message: err.message || 'Internal Server Error', // Send a response with the error message
+        message: err.message || 'Internal Server Error',
     });
 };
 

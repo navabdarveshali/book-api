@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10); 
 
         const userId = await userModel.addUser(name, email, hashedPassword, contact);
         res.status(201).json({ success: true, message: 'User registered successfully.', userId });
@@ -68,7 +68,7 @@ const loginUser = async (req, res) => {
 // Update user account information
 const updateUser = async (req, res) => {
     const { name, email, contact } = req.body;
-    const userId = req.user.id; // Assuming the user ID is retrieved from the token
+    const userId = req.user.id;
 
     if (!name || !email || !contact) {
         return res.status(400).json({ success: false, message: 'All fields are required.' });

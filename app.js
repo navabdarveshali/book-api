@@ -5,13 +5,13 @@ const userRoutes = require('./routes/userRoutes.js');
 const bookRoutes = require('./routes/bookRoutes.js');
 const borrowRoutes = require('./routes/borrowRoutes.js');
 const errorHandler = require('./middlewares/errorHandler');
-const connection = require('./config/db.js'); // Import the database connection
+const connection = require('./config/db.js'); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.json()); // Using Express's built-in JSON parser
+app.use(express.json());
 app.use(cors());
 
 // Database Connection
@@ -25,13 +25,14 @@ connection.connect((err) => {
 });
 
 // Routes
-app.use('/api/users', userRoutes); // Enable user routes
-app.use('/api/books', bookRoutes); // Enable book routes
-app.use('/api/borrows', borrowRoutes); // Enable borrow routes
+app.use('/api/users', userRoutes); 
+app.use('/api/books', bookRoutes); 
+app.use('/api/borrows', borrowRoutes);
 
 // Error Handler
 app.use(errorHandler);
 
+// mail remainder
 const triggerSendReturnReminders = async () => {
     try {
         await sendDueReminders();
@@ -40,11 +41,10 @@ const triggerSendReturnReminders = async () => {
         console.error('Error while sending return reminders:', err);
     }
 };
-
 triggerSendReturnReminders();
 
 
-// Start the Server
+// server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

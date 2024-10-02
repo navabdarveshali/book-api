@@ -1,4 +1,3 @@
-// Utility function to create a standardized API response
 const createResponse = (res, statusCode, message, data = null , error = null) => {
     const response = {
         success: statusCode >= 200 && statusCode < 300,

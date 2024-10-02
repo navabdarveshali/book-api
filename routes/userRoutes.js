@@ -10,7 +10,7 @@ router.post('/register', registerUser);
 // Login a user
 router.post('/login', loginUser);
 
-// Update user information (requires authentication)
+// Update user information
 router.put('/update', authMiddleware, updateUser);
 
 module.exports = router;

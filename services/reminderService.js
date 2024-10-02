@@ -1,10 +1,10 @@
 const connection = require('../config/db');
 const { sendEmail } = require('../utils/emailService');
 
-// Function to fetch users with upcoming returns
+
 const getUsersWithUpcomingReturns = async () => {
     try {
-    const daysBeforeReturn = 2; // Number of days before return
+    const daysBeforeReturn = 2; // before 2 days
     const currentDate = new Date();
     const reminderDate = new Date(currentDate);
     reminderDate.setDate(currentDate.getDate() + daysBeforeReturn);
@@ -25,7 +25,7 @@ const getUsersWithUpcomingReturns = async () => {
     
 };
 
-// Function to send reminder emails
+// Function to send reminder mails
 const sendDueReminders = async () => {
     try {
         const users = await getUsersWithUpcomingReturns();

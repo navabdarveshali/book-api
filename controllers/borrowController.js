@@ -1,4 +1,4 @@
-const { createResponse } = require('../utils/responseHelper'); // Uncomment this line
+const { createResponse } = require('../utils/responseHelper');
 const borrowModel = require('../models/borrowModel');
 const {validateEmail} = require('../utils/validation');
 // Borrow a book
@@ -13,7 +13,7 @@ const borrowBook = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Invalid email format.' });
         }
         const dueDate = new Date();
-        dueDate.setDate(dueDate.getDate() + 14); // Set due date to 14 days from now
+        dueDate.setDate(dueDate.getDate() + 14); // set due for 14 days
 
         const result = await borrowModel.borrowBook(user_id, book_id,email, dueDate);
         // console.log(dueDate);
