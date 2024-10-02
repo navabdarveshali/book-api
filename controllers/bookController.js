@@ -2,7 +2,7 @@ const bookModel = require('../models/bookModel');
 
 // Fetch all books from a specific genre
 const getBooksByGenre = async (req, res) => {
-    const { genre } = req.params;
+    const { genre} = req.params;
 
     try {
         const books = await bookModel.getBooksByGenre(genre);

@@ -1,5 +1,5 @@
 const express = require('express');
-const { borrowBook, returnBook, getUserBorrowedBooks } = require('../controllers/borrowController');
+const { borrowBook, returnBook, getUserBorrowedBooks, getOverdueBooks } = require('../controllers/borrowController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 
@@ -13,5 +13,9 @@ router.post('/return', authMiddleware, returnBook);
 
 // Get all books borrowed by a user
 router.get('/user/:userId', authMiddleware, getUserBorrowedBooks);
+
+//
+router.get('/getdues',getOverdueBooks);
+
 
 module.exports = router;

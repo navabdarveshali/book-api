@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { sendDueReminders } = require('./services/reminderService.js');
 const userRoutes = require('./routes/userRoutes.js');
 const bookRoutes = require('./routes/bookRoutes.js');
 const borrowRoutes = require('./routes/borrowRoutes.js');
@@ -26,10 +27,22 @@ connection.connect((err) => {
 // Routes
 app.use('/api/users', userRoutes); // Enable user routes
 app.use('/api/books', bookRoutes); // Enable book routes
-app.use('/api/borrow', borrowRoutes); // Enable borrow routes
+app.use('/api/borrows', borrowRoutes); // Enable borrow routes
 
 // Error Handler
 app.use(errorHandler);
+
+const triggerSendReturnReminders = async () => {
+    try {
+        await sendDueReminders();
+        console.log('Return reminders have been sent successfully!');
+    } catch (err) {
+        console.error('Error while sending return reminders:', err);
+    }
+};
+
+triggerSendReturnReminders();
+
 
 // Start the Server
 app.listen(PORT, () => {

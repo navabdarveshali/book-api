@@ -41,10 +41,12 @@ module.exports = {
     },
 
     // Function to get all books by genre
-    getBooksByGenre: (genre) => {
+    getBooksByGenre: (genre , author,availability) => {
         const sql = 'SELECT * FROM books WHERE genre = ?';
+        // const sql ='SELECT * FROM Books WHERE genre = ? OR author = ? OR availability = ? ';
+
         return new Promise((resolve, reject) => {
-            connection.query(sql, [genre], (err, results) => {
+            connection.query(sql, [genre,author,availability], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
@@ -52,6 +54,8 @@ module.exports = {
             });
         });
     },
+
+    
 
     // Function to update book details
     updateBook: (id, title, author, genre, availability_status) => {
@@ -67,7 +71,7 @@ module.exports = {
     },
 
     // Function to remove a book
-    removeBook: (id) => {
+    deleteBook: (id) => {
         const sql = 'DELETE FROM books WHERE id = ?';
         return new Promise((resolve, reject) => {
             connection.query(sql, [id], (err, results) => {

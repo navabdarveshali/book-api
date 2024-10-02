@@ -65,7 +65,4 @@ module.exports = {
             });
         });
     }
-
-    //to get all users
-    
 };
